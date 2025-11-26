@@ -1,23 +1,23 @@
 NAME		= push_swap
 
 CC			= cc
-CFLAGS		= -Wall -Wextra -Werror
+CFLAGS		= -Wall -Wextra -Werror -Iincludes
 RM			= rm -f
 
-SRCS		= main.c \
-			  main_init.c \
-			  stack.c \
-			  operations.c \
-			  operations_exec.c \
-			  utils.c \
-			  utils_normalize.c \
-			  find.c \
-			  find_target.c \
-			  move_cost.c \
-			  move_find.c \
-			  move_exec.c \
-			  sort_three.c \
-			  sort_turkish.c
+SRCS		= src/main.c \
+			  src/main_init.c \
+			  src/stack.c \
+			  src/operations.c \
+			  src/operations_exec.c \
+			  src/utils.c \
+			  src/utils_normalize.c \
+			  src/find.c \
+			  src/find_target.c \
+			  src/move_cost.c \
+			  src/move_find.c \
+			  src/move_exec.c \
+			  src/sort_three.c \
+			  src/sort_turkish.c
 
 OBJS		= $(SRCS:.c=.o)
 
