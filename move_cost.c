@@ -6,7 +6,7 @@
 /*   By: spaipur- <spaipur-@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/26 10:52:13 by spaipur-          #+#    #+#             */
-/*   Updated: 2025/11/26 10:53:36 by spaipur-         ###   ########.fr       */
+/*   Updated: 2025/11/26 11:15:45 by spaipur-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,28 +25,27 @@ static void	init_counts(t_move *move)
 static int	find_best(t_move *m, t_cost_params *p)
 {
 	int	best;
-	int	c2;
-	int	c3;
-	int	c4;
+	int	costs[4];
 
-	m->cost = max_int(p->ra, p->rb);
+	costs[0] = max_int(p->ra, p->rb);
+	costs[1] = max_int(p->rra, p->rrb);
+	costs[2] = p->ra + p->rrb;
+	costs[3] = p->rra + p->rb;
+	m->cost = costs[0];
 	best = 1;
-	c2 = max_int(p->rra, p->rrb);
-	c3 = p->ra + p->rrb;
-	c4 = p->rra + p->rb;
-	if (c2 < m->cost)
+	if (costs[1] < m->cost)
 	{
-		m->cost = c2;
+		m->cost = costs[1];
 		best = 2;
 	}
-	if (c3 < m->cost)
+	if (costs[2] < m->cost)
 	{
-		m->cost = c3;
+		m->cost = costs[2];
 		best = 3;
 	}
-	if (c4 < m->cost)
+	if (costs[3] < m->cost)
 	{
-		m->cost = c4;
+		m->cost = costs[3];
 		best = 4;
 	}
 	return (best);

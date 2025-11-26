@@ -6,13 +6,13 @@
 /*   By: spaipur- <spaipur-@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/26 10:38:05 by spaipur-          #+#    #+#             */
-/*   Updated: 2025/11/26 10:38:17 by spaipur-         ###   ########.fr       */
+/*   Updated: 2025/11/26 11:22:28 by spaipur-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static void	parse_arguments(t_stack *a, int argc, char **argv)
+static void	parse_arguments(t_stack *a, t_stack *b, int argc, char **argv)
 {
 	int	i;
 	int	value;
@@ -23,6 +23,7 @@ static void	parse_arguments(t_stack *a, int argc, char **argv)
 		if (!is_valid_number(argv[i]))
 		{
 			free_stack(a);
+			free_stack(b);
 			error_exit("Invalid input\n");
 		}
 		value = ft_atoi(argv[i]);
@@ -47,7 +48,7 @@ int	main(int argc, char **argv)
 	if (argc < 2)
 		return (0);
 	init_stacks(&a, &b);
-	parse_arguments(a, argc, argv);
+	parse_arguments(a, b, argc, argv);
 	if (has_duplicates(a))
 	{
 		free_stack(a);

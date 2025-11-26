@@ -6,7 +6,7 @@
 /*   By: spaipur- <spaipur-@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/26 10:39:00 by spaipur-          #+#    #+#             */
-/*   Updated: 2025/11/26 10:51:32 by spaipur-         ###   ########.fr       */
+/*   Updated: 2025/11/26 10:59:56 by spaipur-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,13 @@ typedef struct s_cost_params
 	int	rb;
 	int	rrb;
 }	t_cost_params;
+
+typedef struct s_push_data
+{
+	int	pushed;
+	int	current_max;
+	int	cs;
+}	t_push_data;
 
 /* main.c */
 int		is_valid_number(char *str);

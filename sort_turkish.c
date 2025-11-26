@@ -6,7 +6,7 @@
 /*   By: spaipur- <spaipur-@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/26 10:39:07 by spaipur-          #+#    #+#             */
-/*   Updated: 2025/11/26 10:39:08 by spaipur-         ###   ########.fr       */
+/*   Updated: 2025/11/26 11:00:20 by spaipur-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,13 @@ static int	calculate_chunk_size(int n)
 		return (n / 8);
 }
 
-static void	push_element_to_b(t_stack *a, t_stack *b, int cm, int cs, int *p)
+static void	push_elem_to_b(t_stack *a, t_stack *b, t_push_data *d)
 {
-	if (a->head->value <= cm)
+	if (a->head->value <= d->current_max)
 	{
 		execute_operation(a, b, "pb");
-		(*p)++;
-		if (b->size > 1 && b->head->value < cm - cs / 2)
+		(d->pushed)++;
+		if (b->size > 1 && b->head->value < d->current_max - d->cs / 2)
 			execute_operation(a, b, "rb");
 	}
 	else
@@ -37,16 +37,16 @@ static void	push_element_to_b(t_stack *a, t_stack *b, int cm, int cs, int *p)
 
 static void	push_phase(t_stack *a, t_stack *b, int chunksize)
 {
-	int	pushed;
-	int	current_max;
+	t_push_data	data;
 
-	pushed = 0;
-	current_max = chunksize - 1;
+	data.pushed = 0;
+	data.current_max = chunksize - 1;
+	data.cs = chunksize;
 	while (a->size > 3)
 	{
-		push_element_to_b(a, b, current_max, chunksize, &pushed);
-		if (pushed == current_max + 1)
-			current_max += chunksize;
+		push_elem_to_b(a, b, &data);
+		if (data.pushed == data.current_max + 1)
+			data.current_max += chunksize;
 	}
 }
 
