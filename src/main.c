@@ -6,7 +6,7 @@
 /*   By: spaipur- <spaipur-@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/26 10:38:05 by spaipur-          #+#    #+#             */
-/*   Updated: 2025/11/26 10:38:28 by spaipur-         ###   ########.fr       */
+/*   Updated: 2025/11/26 12:06:32 by spaipur-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,14 +50,9 @@ int	has_duplicates(t_stack *stack)
 	return (0);
 }
 
-void	error_exit(const char *msg)
+void	error_exit()
 {
 	write(2, "Error\n", 6);
-	if (msg)
-	{
-		while (*msg)
-			write(2, msg++, 1);
-	}
 	exit(1);
 }
 

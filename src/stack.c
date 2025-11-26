@@ -6,7 +6,7 @@
 /*   By: spaipur- <spaipur-@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/26 10:39:11 by spaipur-          #+#    #+#             */
-/*   Updated: 2025/11/26 10:39:11 by spaipur-         ###   ########.fr       */
+/*   Updated: 2025/11/26 12:11:27 by spaipur-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void	push(t_stack *stack, int value, int index)
 
 	node = create_node(value, index);
 	if (!node)
-		error_exit("Memory allocation failed\n");
+		error_exit();
 	if (!stack->head)
 	{
 		stack->head = node;

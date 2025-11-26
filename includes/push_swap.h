@@ -6,7 +6,7 @@
 /*   By: spaipur- <spaipur-@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/26 10:39:00 by spaipur-          #+#    #+#             */
-/*   Updated: 2025/11/26 10:59:56 by spaipur-         ###   ########.fr       */
+/*   Updated: 2025/11/26 12:10:47 by spaipur-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ typedef struct s_push_data
 /* main.c */
 int		is_valid_number(char *str);
 int		has_duplicates(t_stack *stack);
-void	error_exit(const char *msg);
+void	error_exit();
 int		ft_atoi(const char *str);
 
 /* stack.c */

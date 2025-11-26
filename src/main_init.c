@@ -6,7 +6,7 @@
 /*   By: spaipur- <spaipur-@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/26 10:38:05 by spaipur-          #+#    #+#             */
-/*   Updated: 2025/11/26 11:22:28 by spaipur-         ###   ########.fr       */
+/*   Updated: 2025/11/26 12:11:21 by spaipur-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static void	parse_arguments(t_stack *a, t_stack *b, int argc, char **argv)
 		{
 			free_stack(a);
 			free_stack(b);
-			error_exit("Invalid input\n");
+			error_exit();
 		}
 		value = ft_atoi(argv[i]);
 		push(a, value, argc - 1 - i);
@@ -37,7 +37,7 @@ static void	init_stacks(t_stack **a, t_stack **b)
 	*a = create_stack();
 	*b = create_stack();
 	if (!(*a) || !(*b))
-		error_exit("Memory allocation failed\n");
+		error_exit();
 }
 
 int	main(int argc, char **argv)
@@ -53,7 +53,7 @@ int	main(int argc, char **argv)
 	{
 		free_stack(a);
 		free_stack(b);
-		error_exit("Duplicate numbers\n");
+		error_exit();
 	}
 	normalize_values(a);
 	if (!is_sorted(a, b))
