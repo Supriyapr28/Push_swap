@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: spaipur- <spaipur-@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/26 10:38:05 by spaipur-          #+#    #+#             */
-/*   Updated: 2025/11/26 10:38:38 by spaipur-         ###   ########.fr       */
+/*   Created: 2025/11/26 10:52:13 by spaipur-          #+#    #+#             */
+/*   Updated: 2025/11/26 10:53:36 by spaipur-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,18 @@ static void	init_counts(t_move *move)
 	move->rrr_count = 0;
 }
 
-static int	find_best(t_move *m, int c1, int c2, int c3, int c4)
+static int	find_best(t_move *m, t_cost_params *p)
 {
 	int	best;
+	int	c2;
+	int	c3;
+	int	c4;
 
-	m->cost = c1;
+	m->cost = max_int(p->ra, p->rb);
 	best = 1;
+	c2 = max_int(p->rra, p->rrb);
+	c3 = p->ra + p->rrb;
+	c4 = p->rra + p->rb;
 	if (c2 < m->cost)
 	{
 		m->cost = c2;
@@ -46,46 +52,45 @@ static int	find_best(t_move *m, int c1, int c2, int c3, int c4)
 	return (best);
 }
 
-static void	assign_counts(t_move *m, int best, int ra, int rra, int rb, int rrb)
+static void	assign_rr_counts(t_move *m, t_cost_params *p)
+{
+	m->rr_count = min_int(p->ra, p->rb);
+	m->ra_count = p->ra - m->rr_count;
+	m->rb_count = p->rb - m->rr_count;
+}
+
+static void	assign_counts(t_move *m, int best, t_cost_params *p)
 {
 	if (best == 1)
-	{
-		m->rr_count = min_int(ra, rb);
-		m->ra_count = ra - m->rr_count;
-		m->rb_count = rb - m->rr_count;
-	}
+		assign_rr_counts(m, p);
 	else if (best == 2)
 	{
-		m->rrr_count = min_int(rra, rrb);
-		m->rra_count = rra - m->rrr_count;
-		m->rrb_count = rrb - m->rrr_count;
+		m->rrr_count = min_int(p->rra, p->rrb);
+		m->rra_count = p->rra - m->rrr_count;
+		m->rrb_count = p->rrb - m->rrr_count;
 	}
 	else if (best == 3)
 	{
-		m->ra_count = ra;
-		m->rrb_count = rrb;
+		m->ra_count = p->ra;
+		m->rrb_count = p->rrb;
 	}
 	else
 	{
-		m->rra_count = rra;
-		m->rb_count = rb;
+		m->rra_count = p->rra;
+		m->rb_count = p->rb;
 	}
 }
 
 void	calculate_move_cost(t_move *move, int size_b, int size_a)
 {
-	int	ra;
-	int	rra;
-	int	rb;
-	int	rrb;
-	int	best;
+	t_cost_params	p;
+	int				best;
 
-	ra = move->target_pos;
-	rra = size_a - move->target_pos;
-	rb = move->b_pos;
-	rrb = size_b - move->b_pos;
+	p.ra = move->target_pos;
+	p.rra = size_a - move->target_pos;
+	p.rb = move->b_pos;
+	p.rrb = size_b - move->b_pos;
 	init_counts(move);
-	best = find_best(move, max_int(ra, rb), max_int(rra, rrb),
-			ra + rrb, rra + rb);
-	assign_counts(move, best, ra, rra, rb, rrb);
+	best = find_best(move, &p);
+	assign_counts(move, best, &p);
 }

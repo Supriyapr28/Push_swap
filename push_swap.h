@@ -6,7 +6,7 @@
 /*   By: spaipur- <spaipur-@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/26 10:39:00 by spaipur-          #+#    #+#             */
-/*   Updated: 2025/11/26 10:39:01 by spaipur-         ###   ########.fr       */
+/*   Updated: 2025/11/26 10:51:32 by spaipur-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,14 @@ typedef struct s_move
 	int	rr_count;
 	int	rrr_count;
 }	t_move;
+
+typedef struct s_cost_params
+{
+	int	ra;
+	int	rra;
+	int	rb;
+	int	rrb;
+}	t_cost_params;
 
 /* main.c */
 int		is_valid_number(char *str);
