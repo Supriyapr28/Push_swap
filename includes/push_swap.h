@@ -6,18 +6,16 @@
 /*   By: spaipur- <spaipur-@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/26 10:39:00 by spaipur-          #+#    #+#             */
-/*   Updated: 2025/11/26 12:10:47 by spaipur-         ###   ########.fr       */
+/*   Updated: 2025/11/28 19:33:39 by spaipur-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
-# include <stdio.h>
 # include <stdlib.h>
 # include <limits.h>
 # include <unistd.h>
-# include <string.h>
 
 typedef struct s_node
 {
@@ -66,7 +64,7 @@ typedef struct s_push_data
 /* main.c */
 int		is_valid_number(char *str);
 int		has_duplicates(t_stack *stack);
-void	error_exit();
+void	error_exit(void);
 int		ft_atoi(const char *str);
 
 /* stack.c */

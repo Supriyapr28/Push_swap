@@ -6,7 +6,7 @@
 /*   By: spaipur- <spaipur-@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/26 10:52:13 by spaipur-          #+#    #+#             */
-/*   Updated: 2025/11/26 11:15:45 by spaipur-         ###   ########.fr       */
+/*   Updated: 2025/11/28 19:34:45 by spaipur-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,17 +51,14 @@ static int	find_best(t_move *m, t_cost_params *p)
 	return (best);
 }
 
-static void	assign_rr_counts(t_move *m, t_cost_params *p)
-{
-	m->rr_count = min_int(p->ra, p->rb);
-	m->ra_count = p->ra - m->rr_count;
-	m->rb_count = p->rb - m->rr_count;
-}
-
 static void	assign_counts(t_move *m, int best, t_cost_params *p)
 {
 	if (best == 1)
-		assign_rr_counts(m, p);
+	{
+		m->rr_count = min_int(p->ra, p->rb);
+		m->ra_count = p->ra - m->rr_count;
+		m->rb_count = p->rb - m->rr_count;
+	}
 	else if (best == 2)
 	{
 		m->rrr_count = min_int(p->rra, p->rrb);

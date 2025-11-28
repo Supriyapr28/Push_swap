@@ -14,12 +14,17 @@
 
 static int	calculate_chunk_size(int n)
 {
+	int	cs;
+
 	if (n <= 100)
-		return (n / 5);
+		cs = n / 5;
 	else if (n <= 250)
-		return (n / 6);
+		cs = n / 6;
 	else
-		return (n / 8);
+		cs = n / 8;
+	if (cs < 1)
+		cs = 1;
+	return (cs);
 }
 
 static void	push_elem_to_b(t_stack *a, t_stack *b, t_push_data *d)
